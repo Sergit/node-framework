@@ -2,9 +2,8 @@
 
 namespace NodeFramework.Core
 {
-	public interface IOutput<T,TInput> where TInput : IInput<T>
+	public interface IOutput<TInput> where TInput : IInput
 	{
-		T value { get; set; }
 		List<TInput> inputs { get; }
 	}
 }
