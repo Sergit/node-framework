@@ -2,7 +2,7 @@
 
 namespace NodeFramework.Core
 {
-	public class ListNodeStorage<InputPinType,OutputPinType> : INodeStorage<InputPinType,OutputPinType>
+	public class ListStorage<InputPinType,OutputPinType> : IStorage<InputPinType,OutputPinType>
 	{
 		public List<InputPinType> inputs
 		{

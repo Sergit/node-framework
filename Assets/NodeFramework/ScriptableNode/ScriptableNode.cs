@@ -4,8 +4,8 @@ using NodeFramework.Core;
 
 namespace NodeFramework.Scriptable
 {
-	public class ScriptableNode : Node<ScriptableInput, ScriptableOutput, ScriptableNodeStorage>
+	public class ScriptableNode : Node<ScriptableInput, ScriptableOutput, ScriptableStorage<ScriptableInput,ScriptableOutput>, ScriptableCreator<ScriptableInput,ScriptableOutput> >
 	{
-		public ScriptableNode(ScriptableNodeStorage scriptableNodeStorage) : base( scriptableNodeStorage ) {}
+		public ScriptableNode(ScriptableStorage<ScriptableInput,ScriptableOutput> scriptableStorage) : base( scriptableStorage, new ScriptableCreator<ScriptableInput,ScriptableOutput>() ) {}
 	}
 }

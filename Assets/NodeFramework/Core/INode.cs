@@ -6,5 +6,7 @@ namespace NodeFramework.Core
 	{
 		List<TInput> inputs { get; }
 		List<TOutput> outputs { get; }
+		TInput CreateInput();
+		TOutput CreateOutput();
 	}
 }

@@ -5,7 +5,7 @@ using NodeFramework.Core;
 
 namespace NodeFramework.Scriptable
 {
-	[Serializable][CreateAssetMenu]
+	[Serializable]
 	public class ScriptableOutput : ScriptableObject, IOutput<ScriptableInput>
 	{
 		public List<ScriptableInput> inputs { get { return m_Inputs; } }

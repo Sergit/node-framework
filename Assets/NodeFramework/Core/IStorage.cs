@@ -2,7 +2,7 @@
 
 namespace NodeFramework.Core
 {
-	public interface INodeStorage<TInput,TOutput>
+	public interface IStorage<TInput,TOutput>
 	{
 		List<TInput> inputs { get; set; }
 		List<TOutput> outputs { get; set; }

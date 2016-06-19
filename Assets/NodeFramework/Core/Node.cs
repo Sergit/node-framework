@@ -2,18 +2,32 @@
 
 namespace NodeFramework.Core
 {
-	public class Node<TInput,TOutput,TNodeStorage> : INode<TInput,TOutput> where TNodeStorage : INodeStorage<TInput,TOutput>
+	public class Node<TInput,TOutput,TStorage,TCreator> : INode<TInput,TOutput> 
+		where TStorage : IStorage<TInput,TOutput>
+		where TCreator : ICreator<TInput,TOutput>
 	{
-		public List<TInput> inputs { get { return m_NodeStorage.inputs; } }
-		public List<TOutput> outputs { get { return m_NodeStorage.outputs; } }
+		public List<TInput> inputs { get { return m_Storage.inputs; } }
+		public List<TOutput> outputs { get { return m_Storage.outputs; } }
 
-		public Node(TNodeStorage _storage)
+		public Node(TStorage _storage, TCreator _creator)
 		{
-			m_NodeStorage = _storage;
+			m_Storage = _storage;
+			m_Creator = _creator;
 		}
 
-		public TNodeStorage nodeStorage { get { return m_NodeStorage; } }
+		public TInput CreateInput()
+		{
+			return m_Creator.CreateInput();
+		}
 
-		TNodeStorage m_NodeStorage;
+		public TOutput CreateOutput()
+		{
+			return m_Creator.CreateOutput();
+		}
+
+		public TStorage storage { get { return m_Storage; } }
+
+		TStorage m_Storage;
+		TCreator m_Creator;
 	}
 }

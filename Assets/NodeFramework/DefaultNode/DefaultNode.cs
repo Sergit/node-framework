@@ -7,10 +7,23 @@ namespace NodeFramework.Object
 
 	public class DefaultOutput : Output<DefaultInput> {}
 
-	public class DefaultNodeStorage : ListNodeStorage<DefaultInput,DefaultOutput> {}
+	public class DefaultStorage : ListStorage<DefaultInput,DefaultOutput> {}
 
-	public class DefaultNode : Node<DefaultInput, DefaultOutput, DefaultNodeStorage>
+	public class DefaultCreator : ICreator<DefaultInput,DefaultOutput>
 	{
-		public DefaultNode() : base( new DefaultNodeStorage() ) {}
+		public DefaultInput CreateInput()
+		{
+			return new DefaultInput();
+		}
+
+		public DefaultOutput CreateOutput()
+		{
+			return new DefaultOutput();
+		}
+	}
+
+	public class DefaultNode : Node<DefaultInput, DefaultOutput, DefaultStorage, DefaultCreator>
+	{
+		public DefaultNode() : base( new DefaultStorage(), new DefaultCreator() ) {}
 	}
 }
