@@ -11,8 +11,7 @@ public class TestWindow : EditorWindow
 		window.Show();
 	}
 
-	TestAsset m_Asset;
-	TestAsset m_Cache;
+	TestGraphAsset m_Graph;
 
 	void OnEnable()
 	{
@@ -21,31 +20,31 @@ public class TestWindow : EditorWindow
 
 	void OnGUI()
 	{
-		if(m_Asset)
+		if(m_Graph)
 		{
 			if(GUILayout.Button("Create Node"))
 			{
-				TestStorage storage = ScriptableObject.CreateInstance<TestStorage>();
-				//storage.hideFlags = HideFlags.HideInHierarchy;
-				storage.name = "Node";
-				m_Asset.nodes.Add(storage);
-				AssetDatabase.AddObjectToAsset(storage,m_Asset);
-				EditorUtility.SetDirty(m_Asset);
-				AssetDatabase.SaveAssets();
+				CreateNode();
 			}
+		}
+	}
 
-
-
+	void CreateNode()
+	{
+		if(m_Graph)
+		{
+			TestNodeAsset node = m_Graph.CreateNode() as TestNodeAsset;
+			node.rect = new Rect(Vector2.zero, Vector2.one * 150f);
 		}
 	}
 
 	void OnSelectionChange()
 	{
-		TestAsset l_Asset = Selection.activeObject as TestAsset;
+		TestGraphAsset l_graph = Selection.activeObject as TestGraphAsset;
 
-		if(l_Asset && m_Asset != l_Asset)
+		if(l_graph && m_Graph != l_graph)
 		{
-			m_Asset = l_Asset;
+			m_Graph = l_graph;
 			Repaint();
 		}
 	}

@@ -3,4 +3,4 @@ using System;
 using NodeFramework.Scriptable;
 
 [Serializable]
-public class TestNode : ScriptableNode<ScriptableInput,ScriptableOutput> {}
+public class TestGraph : ScriptableGraph<TestNode> {}
