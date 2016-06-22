@@ -29,18 +29,54 @@ namespace NodeFramework.Scriptable
 			
 		public T CreateNode<T>() where T : TNode
 		{
+			T l_node = default(T);
+
+			if(creator)
+			{
+				l_node = creator.CreateInstance<T>();
+
+				SetupNode(l_node);
+			}
+
+			return l_node;
+		}
+
+		public TNode CreateNode(Type type)
+		{
 			TNode l_node = default(TNode);
 
 			if(creator)
 			{
-				l_node = creator.CreateInstance<T>() as TNode;
+				l_node = creator.CreateInstance(type) as TNode;
 
-				l_node.creator = creator;
-
-				nodes.Add(l_node);
+				SetupNode(l_node);
 			}
 
-			return l_node as T;
+			return l_node;
+		}
+
+		public TNode CreateNode(string className)
+		{
+			TNode l_node = default(TNode);
+
+			if(creator)
+			{
+				l_node = creator.CreateInstance(className) as TNode;
+
+				SetupNode(l_node);
+			}
+
+			return l_node;
+		}
+
+		void SetupNode(TNode _node)
+		{
+			if(_node)
+			{
+				_node.creator = creator;
+
+				nodes.Add(_node);
+			}
 		}
 
 		protected abstract ScriptableInstanceCreator GetCreator();

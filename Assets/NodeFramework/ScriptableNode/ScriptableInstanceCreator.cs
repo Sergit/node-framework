@@ -16,5 +16,15 @@ namespace NodeFramework.Scriptable
 		{
 			return ScriptableObject.CreateInstance<T>();
 		}
+
+		public virtual ScriptableObject CreateInstance(Type type)
+		{
+			return ScriptableObject.CreateInstance(type);
+		}
+
+		public virtual ScriptableObject CreateInstance(string className)
+		{
+			return ScriptableObject.CreateInstance(className);
+		}
 	}
 }

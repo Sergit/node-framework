@@ -13,12 +13,7 @@ namespace NodeFramework.Scriptable
 
 			l_creator.m_Asset = _asset;
 
-			l_creator.hideFlags = HideFlags.HideInHierarchy;
-
-			AssetDatabase.AddObjectToAsset(l_creator,_asset);
-
-			EditorUtility.SetDirty(l_creator);
-			EditorUtility.SetDirty(_asset);
+			SetupScriptableObject(l_creator,_asset);
 
 			return l_creator;
 		}
@@ -27,14 +22,37 @@ namespace NodeFramework.Scriptable
 		{
 			T l_instance = base.CreateInstance<T>();
 
-			l_instance.hideFlags = HideFlags.HideInHierarchy;
-
-			AssetDatabase.AddObjectToAsset(l_instance,m_Asset);
-
-			EditorUtility.SetDirty(l_instance);
-			EditorUtility.SetDirty(m_Asset);
+			SetupScriptableObject(l_instance,m_Asset);
 
 			return l_instance;
+		}
+
+		public override ScriptableObject CreateInstance(Type type)
+		{
+			ScriptableObject l_instance = base.CreateInstance(type);
+
+			SetupScriptableObject(l_instance,m_Asset);
+
+			return l_instance;
+		}
+
+		public override ScriptableObject CreateInstance(string className)
+		{
+			ScriptableObject l_instance = base.CreateInstance(className);
+
+			SetupScriptableObject(l_instance,m_Asset);
+
+			return l_instance;
+		}
+
+		static void SetupScriptableObject(ScriptableObject _instance, ScriptableObject _asset)
+		{
+			_instance.hideFlags = HideFlags.HideInHierarchy;
+
+			AssetDatabase.AddObjectToAsset(_instance,_asset);
+
+			EditorUtility.SetDirty(_instance);
+			EditorUtility.SetDirty(_asset);
 		}
 
 		[SerializeField]

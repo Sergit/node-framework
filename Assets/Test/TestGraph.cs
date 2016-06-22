@@ -14,7 +14,7 @@ public class TestGraph : ScriptableGraph<TestNode>
 	[ContextMenu("CreateCustomNode")]
 	public CustomNode CreateCustomNode()
 	{
-		return CreateNode<CustomNode>();
+		return CreateNode(typeof(CustomNode)) as CustomNode;
 	}
 		
 	protected override ScriptableInstanceCreator GetCreator()
