@@ -32,25 +32,41 @@ public class TestWindow : EditorWindow
 
 		if(m_Graph)
 		{
+			EditorGUIUtility.labelWidth = 50f;
+
 			BeginWindows();
 
-			int windowID = 0;
-
-			foreach(TestNode node in m_Graph.nodes)
+			for (int i = 0; i < m_Graph.nodes.Count; i++)
 			{
-				node.rect = GUI.Window(windowID, node.rect, DoWindow, "Node");
+				TestNode node = m_Graph.nodes[i];
 
-				windowID++;
+				if(node)
+				{
+					node.rect = new Rect(node.rect.position, new Vector2(node.rect.width, 0f));
+
+					Rect rect = GUILayout.Window(i, node.rect, DrawNode, "Node");
+
+					rect.size = new Vector2(node.rect.width, rect.height);
+
+					node.rect = rect;
+				}
 			}
 
 			EndWindows();
 		}
 	}
 
-	void DoWindow(int windowId)
+	void DrawNode(int windowId)
 	{
-		
-		GUI.DragWindow(new Rect(0, 0, 10000, 10000));
+		TestNode node = m_Graph.nodes[windowId];
+
+		if(node)
+		{
+			Editor editor = Editor.CreateEditor(node);
+			editor.OnInspectorGUI();
+		}
+
+		GUI.DragWindow(new Rect(0, 0, 10000, 20));
 	}
 
 	void CreateNode()
