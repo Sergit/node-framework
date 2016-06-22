@@ -3,12 +3,12 @@ using System;
 using NodeFramework.Scriptable;
 
 [Serializable]
-public class TestGraph : ScriptableGraph<TestNode>
+public class Graph : ScriptableGraph<Node>
 {
-	[ContextMenu("CreateTestNode")]
-	public TestNode CreateTestNode()
+	[ContextMenu("CreateNode")]
+	public Node CreateNode()
 	{
-		return CreateNode<TestNode>();
+		return CreateNode<Node>();
 	}
 
 	[ContextMenu("CreateCustomNode")]

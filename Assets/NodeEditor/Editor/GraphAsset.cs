@@ -4,14 +4,14 @@ using System;
 using NodeFramework.Scriptable;
 
 [Serializable][CreateAssetMenu]
-public class TestGraphAsset : TestGraph
+public class GraphAsset : Graph
 {
 	protected override ScriptableInstanceCreator GetCreator()
 	{
 		return AssetInstanceCreator.Create(this);
 	}
 
-	public void DestroyNode(TestNode node)
+	public void DestroyNode(Node node)
 	{
 		if(node)
 		{

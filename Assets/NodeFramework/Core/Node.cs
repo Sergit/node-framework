@@ -27,6 +27,11 @@ namespace NodeFramework.Core
 			return l_output;
 		}
 
+		public virtual void OnCreate()
+		{
+
+		}
+
 		List<TInput> m_Inputs = new List<TInput>();
 		List<TOutput> m_Outputs = new List<TOutput>();
 	}

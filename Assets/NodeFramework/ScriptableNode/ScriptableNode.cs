@@ -53,6 +53,11 @@ namespace NodeFramework.Scriptable
 			return l_output;
 		}
 
+		public virtual void OnCreate()
+		{
+			
+		}
+
 		[SerializeField][HideInInspector]
 		ScriptableInstanceCreator m_Creator;
 

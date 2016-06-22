@@ -6,7 +6,7 @@ using NodeFramework.Scriptable;
 public class TestWindow : EditorWindow
 {
 	[SerializeField]
-	TestNode m_SelectedNode;
+	Node m_SelectedNode;
 
 	[MenuItem ("Window/Test Window")]
 	static void Init()
@@ -15,7 +15,7 @@ public class TestWindow : EditorWindow
 		window.Show();
 	}
 
-	TestGraphAsset m_Graph;
+	GraphAsset m_Graph;
 
 	void OnEnable()
 	{
@@ -42,13 +42,13 @@ public class TestWindow : EditorWindow
 
 			for (int i = 0; i < m_Graph.nodes.Count; i++)
 			{
-				TestNode node = m_Graph.nodes[i];
+				Node node = m_Graph.nodes[i];
 
 				if(node)
 				{
 					node.rect = new Rect(node.rect.position, new Vector2(node.rect.width, 0f));
 
-					Rect rect = GUILayout.Window(i, node.rect, DrawNode, "Node");
+					Rect rect = GUILayout.Window(i, node.rect, DrawNode, node.header);
 
 					rect.size = new Vector2(node.rect.width, rect.height);
 
@@ -64,7 +64,7 @@ public class TestWindow : EditorWindow
 
 	void DrawNode(int windowId)
 	{
-		TestNode node = m_Graph.nodes[windowId];
+		Node node = m_Graph.nodes[windowId];
 
 		UpdateSelectedNode(node);
 
@@ -78,7 +78,7 @@ public class TestWindow : EditorWindow
 		}
 	}
 
-	void UpdateSelectedNode(TestNode node)
+	void UpdateSelectedNode(Node node)
 	{
 		EventType type = Event.current.type;
 
@@ -116,14 +116,14 @@ public class TestWindow : EditorWindow
 	{
 		if(m_Graph)
 		{
-			TestNode node = m_Graph.CreateTestNode();
+			Node node = m_Graph.CreateNode();
 			node.rect = new Rect(Vector2.zero, Vector2.one * 150f);
 		}
 	}
 
 	void OnSelectionChange()
 	{
-		TestGraphAsset l_graph = Selection.activeObject as TestGraphAsset;
+		GraphAsset l_graph = Selection.activeObject as GraphAsset;
 
 		if(l_graph && m_Graph != l_graph)
 		{

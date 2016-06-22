@@ -11,7 +11,6 @@ namespace NodeFramework.Scriptable
 			return ScriptableObject.CreateInstance<ScriptableInstanceCreator>();
 		}
 
-
 		new public virtual T CreateInstance<T>() where T : ScriptableObject
 		{
 			return ScriptableObject.CreateInstance<T>();

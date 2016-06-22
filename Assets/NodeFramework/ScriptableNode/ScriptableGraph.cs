@@ -76,6 +76,8 @@ namespace NodeFramework.Scriptable
 				_node.creator = creator;
 
 				nodes.Add(_node);
+
+				_node.OnCreate();
 			}
 		}
 
