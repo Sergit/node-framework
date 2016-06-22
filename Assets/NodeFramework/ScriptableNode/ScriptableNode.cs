@@ -57,9 +57,9 @@ namespace NodeFramework.Scriptable
 		{
 			if(creator && inputs.Contains(input))
 			{
-				creator.DestroyInstance(input);
-
 				inputs.Remove(input);
+
+				creator.DestroyInstance(input);
 			}
 		}
 
@@ -67,9 +67,9 @@ namespace NodeFramework.Scriptable
 		{
 			if(creator && outputs.Contains(output))
 			{
-				creator.DestroyInstance(output);
-
 				outputs.Remove(output);
+
+				creator.DestroyInstance(output);
 			}
 		}
 

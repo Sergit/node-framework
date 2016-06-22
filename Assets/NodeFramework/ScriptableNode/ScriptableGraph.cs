@@ -73,9 +73,9 @@ namespace NodeFramework.Scriptable
 		{
 			if(creator && nodes.Contains(node))
 			{
-				creator.DestroyInstance(node);
-
 				nodes.Remove(node);
+
+				creator.DestroyInstance(node);
 			}
 		}
 
