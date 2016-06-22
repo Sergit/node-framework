@@ -23,7 +23,7 @@ namespace NodeFramework.Scriptable
 			}
 		}
 
-		[ContextMenu("CreateInput")]
+		[ContextMenu("Create Input")]
 		public TInput CreateInput()
 		{
 			TInput l_input = default(TInput);
@@ -32,13 +32,15 @@ namespace NodeFramework.Scriptable
 			{
 				l_input = creator.CreateInstance<TInput>();
 
+				l_input.name = "Input";
+
 				inputs.Add(l_input);
 			}
 
 			return l_input;
 		}
 
-		[ContextMenu("CreateOutput")]
+		[ContextMenu("Create Output")]
 		public TOutput CreateOutput()
 		{
 			TOutput l_output = default(TOutput);
@@ -46,6 +48,8 @@ namespace NodeFramework.Scriptable
 			if(m_Creator != null)
 			{
 				l_output = creator.CreateInstance<TOutput>();
+
+				l_output.name = "Output";
 
 				outputs.Add(l_output);
 			}

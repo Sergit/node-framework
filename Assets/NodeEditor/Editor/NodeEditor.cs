@@ -11,15 +11,19 @@ namespace NodeEditor
 
 		public void DrawInputsAndOutputs()
 		{
-			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true), GUILayout.MinHeight(EditorGUIUtility.singleLineHeight));
 
 			EditorGUILayout.BeginVertical();
 
 			InputsGUI();
 
 			EditorGUILayout.EndVertical();
-			
-			GUILayout.Space(100f);
+
+			GUILayout.FlexibleSpace();
+
+			GUILayout.Space(30f);
+
+			GUILayout.FlexibleSpace();
 
 			EditorGUILayout.BeginVertical();
 
@@ -38,7 +42,7 @@ namespace NodeEditor
 
 			foreach(Input input in node.inputs)
 			{
-				GUILayout.Label("input");
+				GUILayout.Label(input.name);
 
 				if(Event.current.type == EventType.Repaint)
 				{
@@ -62,7 +66,7 @@ namespace NodeEditor
 
 				GUILayout.FlexibleSpace();
 
-				GUILayout.Label("output");
+				GUILayout.Label(output.name);
 
 				if(Event.current.type == EventType.Repaint)
 				{
@@ -70,9 +74,9 @@ namespace NodeEditor
 				}
 
 				EditorGUILayout.EndHorizontal();
-
-				GUILayout.FlexibleSpace();
 			}
+
+			GUILayout.FlexibleSpace();
 		}
 	}
 }

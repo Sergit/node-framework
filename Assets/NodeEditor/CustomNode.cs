@@ -17,6 +17,9 @@ namespace NodeEditor
 		{
 			input = CreateInput();
 			output = CreateOutput();
+
+			input.name = "Input value";
+			output.name = "Output value";
 		}
 			
 		[SerializeField][HideInInspector]

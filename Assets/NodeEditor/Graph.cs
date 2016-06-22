@@ -12,13 +12,13 @@ namespace NodeEditor
 			return ScriptableInstanceCreator.Create();
 		}
 
-		[ContextMenu("CreateNode")]
+		[ContextMenu("Create Node")]
 		public Node CreateNode()
 		{
 			return CreateNode<Node>();
 		}
 
-		[ContextMenu("CreateCustomNode")]
+		[ContextMenu("Create Custom Node")]
 		public CustomNode CreateCustomNode()
 		{
 			return CreateNode(typeof(CustomNode)) as CustomNode;
