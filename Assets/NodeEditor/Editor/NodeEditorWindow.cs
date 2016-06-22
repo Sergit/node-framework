@@ -3,15 +3,15 @@ using UnityEditor;
 using System.Collections;
 using NodeFramework.Scriptable;
 
-public class TestWindow : EditorWindow
+public class NodeEditorWindow : EditorWindow
 {
 	[SerializeField]
 	Node m_SelectedNode;
 
-	[MenuItem ("Window/Test Window")]
+	[MenuItem ("Window/Node Editor")]
 	static void Init()
 	{
-		TestWindow window = (TestWindow)EditorWindow.GetWindow (typeof (TestWindow));
+		NodeEditorWindow window = (NodeEditorWindow)EditorWindow.GetWindow (typeof (NodeEditorWindow));
 		window.Show();
 	}
 
@@ -24,16 +24,6 @@ public class TestWindow : EditorWindow
 
 	void OnGUI()
 	{
-		/*
-		if(m_Graph)
-		{
-			if(GUILayout.Button("Create Node"))
-			{
-				CreateNode();
-			}
-		}
-		*/
-
 		if(m_Graph)
 		{
 			EditorGUIUtility.labelWidth = 75f;
@@ -48,11 +38,7 @@ public class TestWindow : EditorWindow
 				{
 					node.rect = new Rect(node.rect.position, new Vector2(node.rect.width, 0f));
 
-					Rect rect = GUILayout.Window(i, node.rect, DrawNode, node.header);
-
-					rect.size = new Vector2(node.rect.width, rect.height);
-
-					node.rect = rect;
+					node.rect = GUILayout.Window(i, node.rect, DrawNode, node.header);
 				}
 			}
 
