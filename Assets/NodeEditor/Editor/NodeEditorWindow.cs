@@ -49,26 +49,16 @@ namespace NodeEditor
 		{
 			if(node)
 			{
-				float headerHeight = 15f;
-				float nodeHeight = node.rect.height - headerHeight;
-				int numInputs = node.inputs.Count;
-				float width =  10f;
-				float height = 10f;
-				float step = nodeHeight / (float)numInputs;
-				float xPos = node.rect.xMin - width + 1;
-				float yPos = node.rect.yMin + headerHeight + (step - height) * 0.5f;
-
-				for (int j = 0; j < numInputs; j++)
+				foreach(Input input in node.inputs)
 				{
-					ScriptableInput input = node.inputs[j];
-
 					if(input)
 					{
-						Rect rect = new Rect(xPos,yPos, width, height);
+						float width =  15f;
+						float height = 15f;
+						float xPos = node.rect.xMin - width + 1;
+						float yPos = node.rect.yMin + input.layoutRect.center.y - height * 0.5f;
 
-						GUI.Box(rect,GUIContent.none);
-
-						yPos += step;
+						GUI.Box(new Rect(xPos,yPos, width, height),GUIContent.none);
 					}
 				}
 			}
@@ -78,26 +68,16 @@ namespace NodeEditor
 		{
 			if(node)
 			{
-				float headerHeight = 15f;
-				float nodeHeight = node.rect.height - headerHeight;
-				int numOutputs = node.outputs.Count;
-				float width =  10f;
-				float height = 10f;
-				float step = nodeHeight / (float)numOutputs;
-				float xPos = node.rect.xMax - 1;
-				float yPos = node.rect.yMin + headerHeight + (step - height) * 0.5f;
-
-				for (int j = 0; j < numOutputs; j++)
+				foreach(Output output in node.outputs)
 				{
-					Output output = node.outputs[j];
-
 					if(output)
 					{
-						Rect rect = new Rect(xPos,yPos, width, height);
+						float width =  15f;
+						float height = 15f;
+						float xPos = node.rect.xMax - 1;
+						float yPos = node.rect.yMin + output.layoutRect.center.y - height * 0.5f;
 
-						GUI.Box(rect,GUIContent.none);
-
-						yPos += step;
+						GUI.Box(new Rect(xPos,yPos, width, height),GUIContent.none);
 					}
 				}
 			}
@@ -117,7 +97,7 @@ namespace NodeEditor
 
 					if(node)
 					{
-						node.rect = GUILayout.Window(i, node.rect, DoNodeGUI, node.header);
+						node.rect = GUILayout.Window(i, new Rect(node.rect.position, new Vector2(node.rect.width,0f)), DoNodeGUI, node.header);
 					}
 				}
 
@@ -133,9 +113,13 @@ namespace NodeEditor
 
 			if(node)
 			{
-				Editor editor = Editor.CreateEditor(node);
+				NodeEditor nodeEditor = Editor.CreateEditor(node) as NodeEditor;
 
-				editor.OnInspectorGUI();
+				nodeEditor.DrawInputsAndOutputs();
+
+				EditorGUILayout.Space();
+
+				nodeEditor.OnInspectorGUI();
 
 				GUI.DragWindow(new Rect(0, 0, 10000, 20));
 			}
@@ -148,6 +132,8 @@ namespace NodeEditor
 			if(type == EventType.MouseUp && Event.current.button == 0)
 			{
 				m_SelectedNode = node;
+
+				Repaint();
 			}
 		}
 

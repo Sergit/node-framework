@@ -18,11 +18,11 @@ namespace NodeEditor
 			input = CreateInput();
 			output = CreateOutput();
 		}
-
-		[SerializeField]
+			
+		[SerializeField][HideInInspector]
 		Input input;
 
-		[SerializeField]
+		[SerializeField][HideInInspector]
 		Output output;
 
 		[SerializeField]

@@ -102,10 +102,10 @@ namespace NodeFramework.Scriptable
 		[SerializeField][HideInInspector]
 		ScriptableInstanceCreator m_Creator;
 
-		[SerializeField]
+		[SerializeField][HideInInspector]
 		List<TInput> m_Inputs = new List<TInput>();
 
-		[SerializeField]
+		[SerializeField][HideInInspector]
 		List<TOutput> m_Outputs = new List<TOutput>();
 	}
 }

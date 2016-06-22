@@ -16,7 +16,7 @@ namespace NodeEditor
 			return "Node";
 		}
 
-		[SerializeField]
+		[SerializeField][HideInInspector]
 		Rect m_Rect;
 	}
 }

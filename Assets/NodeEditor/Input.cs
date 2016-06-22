@@ -8,9 +8,9 @@ namespace NodeEditor
 	[Serializable]
 	public class Input : ScriptableInput
 	{
-		public Vector2 position { get { return m_Position; } set { m_Position = value; } }
+		public Rect layoutRect { get { return m_LayoutRect; } set { m_LayoutRect = value; } }
 
 		[SerializeField]
-		Vector2 m_Position;
+		Rect m_LayoutRect;
 	}
 }
