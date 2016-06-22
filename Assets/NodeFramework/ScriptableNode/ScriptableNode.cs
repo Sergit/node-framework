@@ -14,23 +14,47 @@ namespace NodeFramework.Scriptable
 		public List<TInput> inputs { get { return m_Inputs; } }
 		public List<TOutput> outputs { get { return m_Outputs; } }
 
-		public virtual TInput CreateInput()
-		{
-			TInput l_input = ScriptableObject.CreateInstance<TInput>();
+		public ScriptableInstanceCreator creator {
+			get {
+				return m_Creator;
+			}
+			set {
+				m_Creator = value;
+			}
+		}
 
-			inputs.Add(l_input);
+		[ContextMenu("CreateInput")]
+		public TInput CreateInput()
+		{
+			TInput l_input = default(TInput);
+
+			if(m_Creator != null)
+			{
+				l_input = creator.CreateInstance<TInput>();
+
+				inputs.Add(l_input);
+			}
 
 			return l_input;
 		}
 
-		public virtual TOutput CreateOutput()
+		[ContextMenu("CreateOutput")]
+		public TOutput CreateOutput()
 		{
-			TOutput l_output = ScriptableObject.CreateInstance<TOutput>();
+			TOutput l_output = default(TOutput);
 
-			outputs.Add(l_output);
+			if(m_Creator != null)
+			{
+				l_output = creator.CreateInstance<TOutput>();
+
+				outputs.Add(l_output);
+			}
 
 			return l_output;
 		}
+
+		[SerializeField][HideInInspector]
+		ScriptableInstanceCreator m_Creator;
 
 		[SerializeField]
 		List<TInput> m_Inputs = new List<TInput>();
