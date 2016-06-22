@@ -12,17 +12,17 @@ namespace NodeFramework.Scriptable
 		}
 
 
-		public virtual T CreateInstance<T>() where T : ScriptableObject
+		new public virtual T CreateInstance<T>() where T : ScriptableObject
 		{
 			return ScriptableObject.CreateInstance<T>();
 		}
 
-		public virtual ScriptableObject CreateInstance(Type type)
+		new public virtual ScriptableObject CreateInstance(Type type)
 		{
 			return ScriptableObject.CreateInstance(type);
 		}
 
-		public virtual ScriptableObject CreateInstance(string className)
+		new public virtual ScriptableObject CreateInstance(string className)
 		{
 			return ScriptableObject.CreateInstance(className);
 		}

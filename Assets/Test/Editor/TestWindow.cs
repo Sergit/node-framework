@@ -32,7 +32,7 @@ public class TestWindow : EditorWindow
 
 		if(m_Graph)
 		{
-			EditorGUIUtility.labelWidth = 50f;
+			EditorGUIUtility.labelWidth = 75f;
 
 			BeginWindows();
 
