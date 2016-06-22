@@ -7,8 +7,10 @@ using NodeFramework.Core;
 namespace NodeFramework.Scriptable
 {
 	[Serializable]
-	public abstract class ScriptableGraph<TNode> : ScriptableObject, IGraph<TNode>
-		where TNode : ScriptableNode<ScriptableInput,ScriptableOutput>
+	public abstract class ScriptableGraph<TNode,TInput,TOutput> : ScriptableObject, IGraph<TNode>
+		where TNode : ScriptableNode<TInput,TOutput>
+		where TInput : ScriptableInput
+		where TOutput : ScriptableOutput<TInput>
 	{
 		public List<TNode> nodes { get { return m_Nodes; } }
 

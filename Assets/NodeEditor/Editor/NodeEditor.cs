@@ -2,15 +2,18 @@
 using UnityEditor;
 using System.Collections;
 
-[CustomEditor(typeof(Node))]
-public class NodeEditor : Editor
+namespace NodeEditor
 {
-	public override void OnInspectorGUI()
+	[CustomEditor(typeof(Node))]
+	public class NodeEditor : Editor
 	{
-		EditorGUILayout.BeginVertical(GUILayout.Width(100f),GUILayout.Height(25));
+		public override void OnInspectorGUI()
+		{
+			EditorGUILayout.BeginVertical(GUILayout.Width(100f),GUILayout.Height(25));
 
-		EditorGUILayout.Space();
+			EditorGUILayout.Space();
 
-		EditorGUILayout.EndVertical();
+			EditorGUILayout.EndVertical();
+		}
 	}
 }

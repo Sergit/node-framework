@@ -2,18 +2,21 @@
 using System;
 using NodeFramework.Scriptable;
 
-[Serializable]
-public class Node : ScriptableNode<ScriptableInput,ScriptableOutput>
+namespace NodeEditor
 {
-	public string header { get { return GetHeader(); } }
-
-	public Rect rect { get { return m_Rect; } set { m_Rect = value; } }
-
-	protected virtual string GetHeader()
+	[Serializable]
+	public class Node : ScriptableNode<Input,Output>
 	{
-		return "Node";
-	}
+		public string header { get { return GetHeader(); } }
 
-	[SerializeField]
-	Rect m_Rect;
+		public Rect rect { get { return m_Rect; } set { m_Rect = value; } }
+
+		protected virtual string GetHeader()
+		{
+			return "Node";
+		}
+
+		[SerializeField]
+		Rect m_Rect;
+	}
 }

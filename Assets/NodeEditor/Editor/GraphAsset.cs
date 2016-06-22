@@ -3,11 +3,14 @@ using UnityEditor;
 using System;
 using NodeFramework.Scriptable;
 
-[Serializable][CreateAssetMenu]
-public class GraphAsset : Graph
+namespace NodeEditor
 {
-	protected override ScriptableInstanceCreator GetCreator()
+	[Serializable][CreateAssetMenu]
+	public class GraphAsset : Graph
 	{
-		return AssetInstanceCreator.Create(this);
+		protected override ScriptableInstanceCreator GetCreator()
+		{
+			return AssetInstanceCreator.Create(this);
+		}
 	}
 }

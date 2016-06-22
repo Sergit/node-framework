@@ -2,17 +2,20 @@
 using UnityEditor;
 using System.Collections;
 
-[CustomEditor(typeof(CustomNode))]
-public class CustomNodeEditor : Editor
+namespace NodeEditor
 {
-	public override void OnInspectorGUI()
+	[CustomEditor(typeof(CustomNode))]
+	public class CustomNodeEditor : Editor
 	{
-		SerializedProperty vectorProperty = serializedObject.FindProperty("m_Vector");
+		public override void OnInspectorGUI()
+		{
+			SerializedProperty vectorProperty = serializedObject.FindProperty("m_Vector");
 
-		serializedObject.Update();
+			serializedObject.Update();
 
-		EditorGUILayout.PropertyField(vectorProperty);
+			EditorGUILayout.PropertyField(vectorProperty);
 
-		serializedObject.ApplyModifiedProperties();
+			serializedObject.ApplyModifiedProperties();
+		}
 	}
 }

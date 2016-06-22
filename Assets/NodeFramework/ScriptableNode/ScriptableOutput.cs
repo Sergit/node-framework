@@ -6,11 +6,11 @@ using NodeFramework.Core;
 namespace NodeFramework.Scriptable
 {
 	[Serializable]
-	public class ScriptableOutput : ScriptableObject, IOutput<ScriptableInput>
+	public class ScriptableOutput<TInput> : ScriptableObject, IOutput<TInput> where TInput : ScriptableInput
 	{
-		public List<ScriptableInput> inputs { get { return m_Inputs; } }
+		public List<TInput> inputs { get { return m_Inputs; } }
 
 		[SerializeField]
-		List<ScriptableInput> m_Inputs = new List<ScriptableInput>();
+		List<TInput> m_Inputs = new List<TInput>();
 	}
 }

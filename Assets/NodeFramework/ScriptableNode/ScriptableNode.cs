@@ -9,7 +9,7 @@ namespace NodeFramework.Scriptable
 	[Serializable]
 	public class ScriptableNode<TInput, TOutput> : ScriptableObject, INode<TInput, TOutput>
 		where TInput : ScriptableInput
-		where TOutput : ScriptableOutput
+		where TOutput : ScriptableOutput<TInput>
 	{
 		public List<TInput> inputs { get { return m_Inputs; } }
 		public List<TOutput> outputs { get { return m_Outputs; } }

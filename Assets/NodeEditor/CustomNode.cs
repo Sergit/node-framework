@@ -3,26 +3,29 @@ using System;
 using System.Collections;
 using NodeFramework.Scriptable;
 
-[Serializable]
-public class CustomNode : Node
+namespace NodeEditor
 {
-	protected override string GetHeader()
+	[Serializable]
+	public class CustomNode : Node
 	{
-		return "Custom Node";
+		protected override string GetHeader()
+		{
+			return "Custom Node";
+		}
+
+		public override void OnCreate()
+		{
+			input = CreateInput();
+			output = CreateOutput();
+		}
+
+		[SerializeField]
+		Input input;
+
+		[SerializeField]
+		Output output;
+
+		[SerializeField]
+		Vector3 m_Vector;
 	}
-
-	public override void OnCreate()
-	{
-		input = CreateInput();
-		output = CreateOutput();
-	}
-
-	[SerializeField]
-	ScriptableInput input;
-
-	[SerializeField]
-	ScriptableOutput output;
-
-	[SerializeField]
-	Vector3 m_Vector;
 }

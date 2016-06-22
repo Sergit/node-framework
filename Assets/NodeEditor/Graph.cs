@@ -2,23 +2,26 @@
 using System;
 using NodeFramework.Scriptable;
 
-[Serializable]
-public class Graph : ScriptableGraph<Node>
+namespace NodeEditor
 {
-	protected override ScriptableInstanceCreator GetCreator()
+	[Serializable]
+	public class Graph : ScriptableGraph<Node,Input,Output>
 	{
-		return ScriptableInstanceCreator.Create();
-	}
+		protected override ScriptableInstanceCreator GetCreator()
+		{
+			return ScriptableInstanceCreator.Create();
+		}
 
-	[ContextMenu("CreateNode")]
-	public Node CreateNode()
-	{
-		return CreateNode<Node>();
-	}
+		[ContextMenu("CreateNode")]
+		public Node CreateNode()
+		{
+			return CreateNode<Node>();
+		}
 
-	[ContextMenu("CreateCustomNode")]
-	public CustomNode CreateCustomNode()
-	{
-		return CreateNode(typeof(CustomNode)) as CustomNode;
+		[ContextMenu("CreateCustomNode")]
+		public CustomNode CreateCustomNode()
+		{
+			return CreateNode(typeof(CustomNode)) as CustomNode;
+		}
 	}
 }
