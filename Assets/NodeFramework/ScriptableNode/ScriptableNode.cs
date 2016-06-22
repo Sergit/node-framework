@@ -53,9 +53,50 @@ namespace NodeFramework.Scriptable
 			return l_output;
 		}
 
+		public void DestroyInput(TInput input)
+		{
+			if(creator && inputs.Contains(input))
+			{
+				creator.DestroyInstance(input);
+
+				inputs.Remove(input);
+			}
+		}
+
+		public void DestroyOutput(TOutput output)
+		{
+			if(creator && outputs.Contains(output))
+			{
+				creator.DestroyInstance(output);
+
+				outputs.Remove(output);
+			}
+		}
+
+		public void Clear()
+		{
+			for (int i = 0; i < inputs.Count; i++)
+			{
+				DestroyInput(inputs[i]);
+			}
+
+			for(int i = 0; i < outputs.Count; i++)
+			{
+				DestroyOutput(outputs[i]);
+			}
+
+			inputs.Clear();
+			outputs.Clear();
+		}
+
 		public virtual void OnCreate()
 		{
 			
+		}
+
+		protected virtual void OnDestroy()
+		{
+			Clear();	
 		}
 
 		[SerializeField][HideInInspector]

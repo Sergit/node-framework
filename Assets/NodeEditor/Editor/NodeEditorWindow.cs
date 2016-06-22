@@ -24,6 +24,85 @@ public class NodeEditorWindow : EditorWindow
 
 	void OnGUI()
 	{
+		InputOutputGUI();
+
+		NodesGUI();
+
+		HandleSelectedNode();
+	}
+
+	void InputOutputGUI()
+	{
+		if(m_Graph)
+		{
+			for (int i = 0; i < m_Graph.nodes.Count; i++)
+			{
+				InputOutputGUI(m_Graph.nodes[i]);
+				OutputsGUI(m_Graph.nodes[i]);
+			}
+		}
+	}
+
+	void InputOutputGUI(Node node)
+	{
+		if(node)
+		{
+			float headerHeight = 15f;
+			float nodeHeight = node.rect.height - headerHeight;
+			int numInputs = node.inputs.Count;
+			float width =  10f;
+			float height = 10f;
+			float step = nodeHeight / (float)numInputs;
+			float xPos = node.rect.xMin - width + 1;
+			float yPos = node.rect.yMin + headerHeight + (step - height) * 0.5f;
+
+			for (int j = 0; j < numInputs; j++)
+			{
+				ScriptableInput input = node.inputs[j];
+
+				if(input)
+				{
+					Rect rect = new Rect(xPos,yPos, width, height);
+
+					GUI.Box(rect,GUIContent.none);
+
+					yPos += step;
+				}
+			}
+		}
+	}
+
+	void OutputsGUI(Node node)
+	{
+		if(node)
+		{
+			float headerHeight = 15f;
+			float nodeHeight = node.rect.height - headerHeight;
+			int numOutputs = node.outputs.Count;
+			float width =  10f;
+			float height = 10f;
+			float step = nodeHeight / (float)numOutputs;
+			float xPos = node.rect.xMax - 1;
+			float yPos = node.rect.yMin + headerHeight + (step - height) * 0.5f;
+
+			for (int j = 0; j < numOutputs; j++)
+			{
+				ScriptableOutput output = node.outputs[j];
+
+				if(output)
+				{
+					Rect rect = new Rect(xPos,yPos, width, height);
+
+					GUI.Box(rect,GUIContent.none);
+
+					yPos += step;
+				}
+			}
+		}
+	}
+
+	void NodesGUI()
+	{
 		if(m_Graph)
 		{
 			EditorGUIUtility.labelWidth = 75f;
@@ -36,19 +115,15 @@ public class NodeEditorWindow : EditorWindow
 
 				if(node)
 				{
-					node.rect = new Rect(node.rect.position, new Vector2(node.rect.width, 0f));
-
-					node.rect = GUILayout.Window(i, node.rect, DrawNode, node.header);
+					node.rect = GUILayout.Window(i, node.rect, DoNodeGUI, node.header);
 				}
 			}
 
 			EndWindows();
 		}
-
-		HandleSelectedNode();
 	}
 
-	void DrawNode(int windowId)
+	void DoNodeGUI(int windowId)
 	{
 		Node node = m_Graph.nodes[windowId];
 

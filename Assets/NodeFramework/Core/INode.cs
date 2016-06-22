@@ -11,5 +11,8 @@ namespace NodeFramework.Core
 
 		TInput CreateInput();
 		TOutput CreateOutput();
+		void DestroyInput(TInput input);
+		void DestroyOutput(TOutput output);
+		void Clear();
 	}
 }

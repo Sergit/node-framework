@@ -5,6 +5,11 @@ using NodeFramework.Scriptable;
 [Serializable]
 public class Graph : ScriptableGraph<Node>
 {
+	protected override ScriptableInstanceCreator GetCreator()
+	{
+		return ScriptableInstanceCreator.Create();
+	}
+
 	[ContextMenu("CreateNode")]
 	public Node CreateNode()
 	{
@@ -15,10 +20,5 @@ public class Graph : ScriptableGraph<Node>
 	public CustomNode CreateCustomNode()
 	{
 		return CreateNode(typeof(CustomNode)) as CustomNode;
-	}
-		
-	protected override ScriptableInstanceCreator GetCreator()
-	{
-		return ScriptableInstanceCreator.Create();
 	}
 }

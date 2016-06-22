@@ -45,6 +45,14 @@ namespace NodeFramework.Scriptable
 			return l_instance;
 		}
 
+		public override void DestroyInstance(ScriptableObject scriptableObject)
+		{
+			if(scriptableObject)
+			{
+				DestroyImmediate(scriptableObject,true);
+			}
+		}
+
 		static void SetupScriptableObject(ScriptableObject _instance, ScriptableObject _asset)
 		{
 			_instance.hideFlags = HideFlags.HideInHierarchy;

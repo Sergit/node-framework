@@ -69,6 +69,16 @@ namespace NodeFramework.Scriptable
 			return l_node;
 		}
 
+		public void DestroyNode(TNode node)
+		{
+			if(creator && nodes.Contains(node))
+			{
+				creator.DestroyInstance(node);
+
+				nodes.Remove(node);
+			}
+		}
+
 		void SetupNode(TNode _node)
 		{
 			if(_node)

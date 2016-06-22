@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using NodeFramework.Scriptable;
 
 [Serializable]
 public class CustomNode : Node
@@ -12,10 +13,15 @@ public class CustomNode : Node
 
 	public override void OnCreate()
 	{
-		CreateInput();
-		CreateInput();
-		CreateOutput();
+		input = CreateInput();
+		output = CreateOutput();
 	}
+
+	[SerializeField]
+	ScriptableInput input;
+
+	[SerializeField]
+	ScriptableOutput output;
 
 	[SerializeField]
 	Vector3 m_Vector;

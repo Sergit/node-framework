@@ -32,6 +32,28 @@ namespace NodeFramework.Core
 
 		}
 
+		public void DestroyInput(TInput input)
+		{
+			if(inputs.Contains(input))
+			{
+				inputs.Remove(input);
+			}
+		}
+
+		public void DestroyOutput(TOutput output)
+		{
+			if(outputs.Contains(output))
+			{
+				outputs.Remove(output);
+			}
+		}
+
+		public void Clear()
+		{
+			inputs.Clear();
+			outputs.Clear();
+		}
+
 		List<TInput> m_Inputs = new List<TInput>();
 		List<TOutput> m_Outputs = new List<TOutput>();
 	}

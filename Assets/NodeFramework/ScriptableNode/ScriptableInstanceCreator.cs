@@ -25,5 +25,13 @@ namespace NodeFramework.Scriptable
 		{
 			return ScriptableObject.CreateInstance(className);
 		}
+
+		public virtual void DestroyInstance(ScriptableObject scriptableObject)
+		{
+			if(scriptableObject)
+			{
+				Destroy(scriptableObject);
+			}
+		}
 	}
 }
