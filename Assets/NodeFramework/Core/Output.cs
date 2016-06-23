@@ -6,6 +6,14 @@ namespace NodeFramework.Core
 	{
 		public List<TInput> inputs { get { return m_Inputs; } }
 
+		public void AddInput(TInput input)
+		{
+			if(!inputs.Contains(input))
+			{
+				inputs.Add(input);
+			}
+		}
+
 		List<TInput> m_Inputs = new List<TInput>();
 	}
 }

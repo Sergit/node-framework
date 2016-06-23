@@ -10,6 +10,14 @@ namespace NodeFramework.Scriptable
 	{
 		public List<TInput> inputs { get { return m_Inputs; } }
 
+		public void AddInput(TInput input)
+		{
+			if(!inputs.Contains(input))
+			{
+				inputs.Add(input);
+			}
+		}
+
 		[SerializeField]
 		List<TInput> m_Inputs = new List<TInput>();
 	}
